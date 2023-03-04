@@ -1,22 +1,15 @@
 import './style/App.scss';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Header from './components/header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reloaad.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Header/>
+    <Routes>
+      <Route path='/' element=''/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
