@@ -3,7 +3,41 @@
 a {
   text-decoration: none;
   color: black;
+
   &:hover {
     text-decoration: underline;
+  }
+}
+
+
+#loginPage {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 80%;
+  align-items: center;
+  & h1 {
+    font-size: 32px;
+  }
+  & form {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 120px;
+  }
+  .inputWrapper {
+    display: flex;
+    border: 1px solid black;
+    width: 220px;
+    height: 32px;
+    padding: 8px 16px;
+    padding-right: 4px;
+    border-radius: 4px;
+
+    & input {
+      border: none;
+      outline: none;
+    }
   }
 }

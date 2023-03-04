@@ -12,8 +12,8 @@ const Header = (props) => {
             </nav>
             <Link to='/' id='logo'><CiCoffeeCup size='52px' /><h4>Coffee Beans</h4></Link>
             <nav>
-                <Link to=''>Login</Link>
-                <Link to=''>Register</Link>
+                <Link to='login'>Login</Link>
+                <Link to='register'>Register</Link>
             </nav>
         </header>
     )
