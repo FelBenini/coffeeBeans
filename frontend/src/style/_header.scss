@@ -1,0 +1,25 @@
+header {
+    width: calc(100% - 64px);
+    padding: 0px 32px;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    & #logo {
+        display: flex;
+        align-items: center;
+        color: black;
+        text-decoration: none;
+        transition: linear 0.1s;
+        & h4 {
+            width: 46px;
+        }
+        & svg {
+            margin-bottom: -2px;
+        }
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+}
