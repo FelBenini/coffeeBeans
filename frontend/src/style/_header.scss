@@ -6,6 +6,11 @@ header {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    & nav {
+        width: 120px;
+        display: flex;
+        justify-content: space-between;
+    }
     & #logo {
         display: flex;
         align-items: center;
@@ -20,6 +25,18 @@ header {
         }
         &:hover {
             transform: scale(1.05);
+        }
+    }
+}
+
+#sideMenu {
+    width: 210px;
+    padding: 0px 15px;
+    display: flex;
+    & h1 {
+        & svg {
+            margin-bottom: -5px;
+            margin-right: 8px;
         }
     }
 }
