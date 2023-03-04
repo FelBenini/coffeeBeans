@@ -5,6 +5,7 @@ import SideMenu from './components/sideMenu';
 import { useState } from 'react';
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
+import RegisterPage from './components/pages/RegisterPage';
 
 function App() {
   const [sideMenuState, setSideMenuState] = useState(false)
@@ -15,7 +16,7 @@ function App() {
     <Routes>
       <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<LoginPage/>}/>
-      <Route path='/register' element={<div>Register</div>}/>
+      <Route path='/register' element={<RegisterPage/>}/>
     </Routes>
     </BrowserRouter>
   );
