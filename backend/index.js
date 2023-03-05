@@ -12,11 +12,16 @@ mongoose.connection.once('open', () => {
     console.log('MongoDB conectado com sucesso')
 })
 
-app.post('/register', (req, res) => {
-    console.log
-    let user = new userModel(req.body)
-    user.save()
-    res.json({username, password, email})
+app.post('/register', async (req, res) => {
+
+    let userExists = await userModel.findOne({ "$or": [ { email: req.body.email }, { username: req.body.username} ] })
+    if (userExists) {
+        res.json('Username or email already picked up')
+    } else {
+        let user = await new userModel(req.body)
+        user.save()
+        res.json(user)
+    }
 })
 
 app.listen(4000, () => {

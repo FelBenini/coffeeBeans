@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FiEyeOff, FiEye } from 'react-icons/fi'
 import { IconButton, Button } from '@mui/material'
-import axios from 'axios';
 
 const RegisterPage = () => {
     const [passVisibility, setPassVisibility] = useState('password')
@@ -25,19 +24,22 @@ const RegisterPage = () => {
             body: JSON.stringify({email, username, password}),
             headers: {'content-type': 'application/json'}
         })
+        setUsername('')
+        setPassword('')
+        setEmail('')
     }
     return (
         <section id='registerPage'>
             <h1>Create your Account</h1>
             <form>
                 <span className='inputWrapper'>
-                    <input type='email' name='email' onChange={(e) => setEmail(e.target.value)} placeholder='Type your email' required/>
+                    <input type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Type your email' required/>
                 </span>
                 <span className='inputWrapper'>
-                    <input type='text' name='username' onChange={(e) => setUsername(e.target.value)} placeholder='Choose your username' required/>
+                    <input type='text' value={username} name='username' onChange={(e) => setUsername(e.target.value)} placeholder='Choose your username' required/>
                 </span>
                 <span className='inputWrapper'>
-                    <input placeholder='Type your password' onChange={(e) => setPassword(e.target.value)} type={passVisibility} name='password' required/>
+                    <input placeholder='Type your password' value={password} onChange={(e) => setPassword(e.target.value)} type={passVisibility} name='password' required/>
                     <IconButton onClick={togglePass}>
                         {passIcon}
                     </IconButton>
