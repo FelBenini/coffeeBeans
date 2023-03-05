@@ -13,7 +13,7 @@ mongoose.connection.once('open', () => {
 })
 
 app.post('/register', (req, res) => {
-    console.log(req.body)
+    console.log
     let user = new userModel(req.body)
     user.save()
     res.json({username, password, email})
