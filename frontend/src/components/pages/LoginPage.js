@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { FiEyeOff, FiEye } from 'react-icons/fi'
 import { IconButton, Button } from '@mui/material'
 import { Navigate } from 'react-router-dom'
+import { UserContext } from '../../UserContext'
 
 const LoginPage = () => {
     const [passVisibility, setPassVisibility] = useState('password')
@@ -9,6 +10,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [redirect, setRedirect] = useState(false)
+    const {setUserInfo} = useContext(UserContext)
 
     useEffect(() => {
         passVisibility === 'password' ? setPassIcon(<FiEye />) : setPassIcon(<FiEyeOff />)
@@ -27,7 +29,11 @@ const LoginPage = () => {
             headers: { 'Content-type': 'application/json' },
             credentials: 'include',
         })
-        if (response.status === 200) {
+        if (response.ok) {
+            response.json().then(user => {
+                setUserInfo(user)
+                
+            })
             setRedirect(true)
         }
     }

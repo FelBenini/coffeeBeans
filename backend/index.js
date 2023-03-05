@@ -42,7 +42,10 @@ app.post('/login', async (req, res) => {
         //logged
         Jwt.sign({username, id: user._id}, process.env.SECRET_KEY, {}, (err, token) => {
             if (err) throw err;
-            res.cookie('token', token).json('ok')
+            res.cookie('token', token).json({
+                id: user._id,
+                username
+            })
         })
     } else {
         //not logged

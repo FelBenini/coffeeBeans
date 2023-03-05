@@ -3,26 +3,30 @@ import { Link } from 'react-router-dom'
 import { CiCoffeeCup } from "react-icons/ci"
 import { BiMenuAltLeft } from "react-icons/bi"
 import IconButton from '@mui/material/IconButton';
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 const Header = (props) => {
-    const [username, setUsername] = useState(null)
+    const { setUserInfo, userInfo } = useContext(UserContext)
     useEffect(() => {
         fetch('http://localhost:4000/profile', {
             credentials: 'include',
         }).then((response) => {
             response.json().then(user => {
-                setUsername(user.username)
+                setUserInfo(user)
             })
         })
-    }, [username])
-    async function logout() {
-        await fetch('http://localhost:4000/logout', {
+    }, [setUserInfo])
+    function logout() {
+        fetch('http://localhost:4000/logout', {
             credentials: 'include',
             method: 'POST'
         })
-        setUsername(null)
+        setUserInfo(null)
     }
+
+    let username = userInfo?.username
+
     return (
         <header>
             <nav>
@@ -30,18 +34,13 @@ const Header = (props) => {
             </nav>
             <Link to='/' id='logo'><CiCoffeeCup size='52px' /><h4>Coffee Beans</h4></Link>
             <nav>
-                {username && (
-                    <nav>
+                {username ? <nav>
                     <Link to='create'>New post</Link>
                     <Link onClick={logout}>Logout</Link>
-                    </nav>
-                )}
-                {!username && (
-                    <nav>
+                </nav> : <nav>
                     <Link to='login'>Login</Link>
                     <Link to='register'>Register</Link>
-                    </nav>
-                )}
+                </nav>}
             </nav>
         </header>
     )
