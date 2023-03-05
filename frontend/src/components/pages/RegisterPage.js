@@ -18,7 +18,8 @@ const RegisterPage = () => {
         passVisibility === 'password' ? setPassVisibility('text') : setPassVisibility('password')
     }
 
-    async function call() {
+    async function call(e) {
+        e.preventDefault()
         await fetch('http://localhost:4000/register', {
             method: 'POST',
             body: JSON.stringify({email, username, password}),
@@ -27,11 +28,12 @@ const RegisterPage = () => {
         setUsername('')
         setPassword('')
         setEmail('')
+        return false
     }
     return (
         <section id='registerPage'>
             <h1>Create your Account</h1>
-            <form>
+            <form onSubmit={call}>
                 <span className='inputWrapper'>
                     <input type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Type your email' required/>
                 </span>
@@ -44,7 +46,7 @@ const RegisterPage = () => {
                         {passIcon}
                     </IconButton>
                 </span>
-                <Button onClick={call} variant='contained'>Register</Button>
+                <Button type='submit' variant='contained'>Register</Button>
             </form>
         </section>
     )
