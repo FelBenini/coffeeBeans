@@ -20,9 +20,9 @@ const RegisterPage = () => {
     }
 
     async function call() {
-        await axios.post('http://localhost:4000/register', {
+        await fetch('http://localhost:4000/register', {
             method: 'POST',
-            body: JSON.stringify({username, email, password}),
+            body: JSON.stringify({email, username, password}),
             headers: {'content-type': 'application/json'}
         })
     }
@@ -42,7 +42,7 @@ const RegisterPage = () => {
                         {passIcon}
                     </IconButton>
                 </span>
-                <Button onClick={call} variant='contained'>Register</Button>
+                <Button onClick={call} variant='contained' type='submit'>Register</Button>
             </form>
         </section>
     )
