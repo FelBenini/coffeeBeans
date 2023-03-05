@@ -42,7 +42,7 @@ const RegisterPage = () => {
                         {passIcon}
                     </IconButton>
                 </span>
-                <Button onClick={call} variant='contained' type='submit'>Register</Button>
+                <Button onClick={call} variant='contained'>Register</Button>
             </form>
         </section>
     )
