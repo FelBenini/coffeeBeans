@@ -5,6 +5,7 @@ import userModel from "./models/user.js";
 import bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import Jwt from "jsonwebtoken";
+import cookieParser from "cookie-parser";
 
 dotenv.config()
 
@@ -13,7 +14,7 @@ const salt = bcrypt.genSaltSync(10);
 const app = Express()
 
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
-
+app.use(cookieParser())
 app.use(Express.json())
 
 mongoose.connect('mongodb://127.0.0.1:27017/CoffeeBeans');
@@ -47,6 +48,18 @@ app.post('/login', async (req, res) => {
         //not logged
         res.status(400).json('Could not login')
     }
+})
+
+app.get('/profile', (req, res) => {
+    const {token} = req.cookies
+    Jwt.verify(token, process.env.SECRET_KEY, {}, (err, info) => {
+        if (err) throw err;
+        res.json(info)
+    })
+})
+
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json('ok')
 })
 
 app.listen(4000, () => {
