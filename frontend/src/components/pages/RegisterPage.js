@@ -8,6 +8,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
     const [username, setUsername] = useState();
+    const [formText, setFormText] = useState('');
 
     useEffect(() => {
         passVisibility === 'password' ? setPassIcon(<FiEye />) : setPassIcon(<FiEyeOff />)
@@ -18,22 +19,27 @@ const RegisterPage = () => {
         passVisibility === 'password' ? setPassVisibility('text') : setPassVisibility('password')
     }
 
-    async function call(e) {
+    async function registerUser(e) {
         e.preventDefault()
-        await fetch('http://localhost:4000/register', {
+        let response = await fetch('http://localhost:4000/register', {
             method: 'POST',
             body: JSON.stringify({email, username, password}),
             headers: {'content-type': 'application/json'}
         })
-        setUsername('')
-        setPassword('')
-        setEmail('')
-        return false
+        if (response.status === 409) {
+            setFormText('Could not register, this e-mail was already taken')
+        } else if (response.status === 200){
+            setFormText('Your account was succesfully registered')
+            setUsername('')
+            setPassword('')
+            setEmail('')
+        }
+        
     }
     return (
         <section id='registerPage'>
             <h1>Create your Account</h1>
-            <form onSubmit={call}>
+            <form onSubmit={registerUser}>
                 <span className='inputWrapper'>
                     <input type='email' name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Type your email' required/>
                 </span>
@@ -46,7 +52,8 @@ const RegisterPage = () => {
                         {passIcon}
                     </IconButton>
                 </span>
-                <Button type='submit' variant='contained'>Register</Button>
+                <Button sx={{width: '240px'}} type='submit' variant='contained'>Register</Button>
+                <p className='pAlert'>{formText}</p>
             </form>
         </section>
     )

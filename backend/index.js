@@ -16,11 +16,11 @@ app.post('/register', async (req, res) => {
 
     let userExists = await userModel.findOne({ "$or": [ { email: req.body.email }, { username: req.body.username} ] })
     if (userExists) {
-        res.json('Username or email already picked up')
+        res.status(409).json('Username or email already taken')
     } else {
         let user = await new userModel(req.body)
         user.save()
-        res.json(user)
+        res.status(200).json(user)
     }
 })
 
