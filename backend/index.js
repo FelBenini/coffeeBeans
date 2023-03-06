@@ -6,6 +6,10 @@ import postController from "./controllers/postController.js";
 import cookieParser from "cookie-parser";
 import multer from 'multer';
 import helmet from "helmet";
+import path from 'path'
+import * as url from 'url';
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const uploadMiddleware = multer({dest: 'uploads/'})
 
@@ -14,7 +18,12 @@ const app = Express()
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParser())
 app.use(Express.json())
+app.use(
+    '/uploads',
+     Express.static(path.join(__dirname, './uploads'))
+   );
 app.use(helmet())
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/CoffeeBeans');
 mongoose.connection.once('open', () => {

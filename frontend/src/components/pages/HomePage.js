@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import PostsCard from '../postsCard'
 
 const HomePage = () => {
   const [posts, setPosts] = useState([])
@@ -12,7 +13,7 @@ const HomePage = () => {
     fetchPosts() // eslint-disable-next-line
   },[])
   const postsMap = posts.map((post, i) => {
-    return <p key={i}>{post.title}</p>
+    return <PostsCard key={i} index={i} info={post}/>
   })
   return (
     <section id='homePage'>

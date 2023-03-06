@@ -20,7 +20,7 @@ class postController {
     }
 
     static displayPost = async (req, res) => {
-        const posts = await postModel.find()
+        const posts = await postModel.find().sort({createdAt: -1})
         res.json(posts)
     }
 }
