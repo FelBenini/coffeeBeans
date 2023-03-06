@@ -8,6 +8,7 @@ import Jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import multer from 'multer';
 import fs from 'fs'
+import postModel from "./models/post.js";
 
 const uploadMiddleware = multer({dest: 'uploads/'})
 
@@ -69,12 +70,21 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok')
 })
 
-app.post('/createpost', uploadMiddleware.single('file'), (req, res) => {
+app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
     const {originalname, path} = req.file
     const parts = originalname.split('.')
     const format = parts[parts.length - 1]
-    fs.renameSync(path, path + '.' + format)
-    res.json({format})
+    const newPath = path + '.' + format
+    fs.renameSync(path, newPath)
+    const {title, summary, content} = req.body
+    const post = await new postModel({
+        title,
+        summary,
+        img: newPath,
+        content
+    })
+    post.save()
+    res.json(post)
 })
 
 app.listen(4000, () => {
