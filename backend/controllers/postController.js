@@ -23,6 +23,11 @@ class postController {
         const posts = await postModel.find().sort({createdAt: -1})
         res.json(posts)
     }
+
+    static getPost = async (req, res) => {
+        const post = await postModel.findById(req.params.id)
+        res.json(post)
+    }
 }
 
 export default postController

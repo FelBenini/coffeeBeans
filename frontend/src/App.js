@@ -7,6 +7,7 @@ import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import CreatePostPage from './components/pages/CreatePostPage';
+import PostPage from './components/pages/PostPage';
 
 function App() {
   const [sideMenuState, setSideMenuState] = useState(false)
@@ -19,6 +20,7 @@ function App() {
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/register' element={<RegisterPage/>}/>
       <Route path='/create' element={<CreatePostPage/>}/>
+      <Route path='/post/:name/:id' element={<PostPage/>}/>
     </Routes>
     </BrowserRouter>
   );
