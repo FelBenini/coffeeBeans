@@ -6,6 +6,10 @@ import bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import Jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import multer from 'multer';
+import fs from 'fs'
+
+const uploadMiddleware = multer({dest: 'uploads/'})
 
 dotenv.config()
 
@@ -63,6 +67,14 @@ app.get('/profile', (req, res) => {
 
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok')
+})
+
+app.post('/createpost', uploadMiddleware.single('file'), (req, res) => {
+    const {originalname, path} = req.file
+    const parts = originalname.split('.')
+    const format = parts[parts.length - 1]
+    fs.renameSync(path, path + '.' + format)
+    res.json({format})
 })
 
 app.listen(4000, () => {
