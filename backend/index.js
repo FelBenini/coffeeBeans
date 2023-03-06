@@ -31,6 +31,7 @@ app.post('/logout', userController.logout)
 //post
 
 app.post('/createpost', uploadMiddleware.single('file'), postController.newPost)
+app.get('/posts', postController.displayPost)
 
 app.listen(4000, () => {
     console.log('Servidor iniciado')

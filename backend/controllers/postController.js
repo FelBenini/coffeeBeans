@@ -18,6 +18,11 @@ class postController {
         post.save()
         res.json(post)
     }
+
+    static displayPost = async (req, res) => {
+        const posts = await postModel.find()
+        res.json(posts)
+    }
 }
 
 export default postController

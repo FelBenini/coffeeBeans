@@ -3,8 +3,10 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Button } from '@mui/material'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const CreatePostPage = () => {
+  const redirect = useNavigate()
   const [title, setTitle] = useState('')
   const [summary, setSummary] = useState('')
   const [content, setContent] = useState('')
@@ -33,6 +35,8 @@ const CreatePostPage = () => {
     await fetch('http://localhost:4000/createpost', {
       method: 'POST',
       body: data
+    }).then(post => {
+      redirect('/')
     })
   }
   return (
