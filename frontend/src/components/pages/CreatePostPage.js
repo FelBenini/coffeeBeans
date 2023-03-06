@@ -38,10 +38,10 @@ const CreatePostPage = () => {
   return (
     <section id='newPostSection'>
       <form onSubmit={submitForm}>
-        <input type='title' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title'/>
-        <input type='summary' value={summary} onChange={(e) => setSummary(e.target.value)} placeholder='Summary'/>
-        <input type='file' onChange={e => {setFile(e.target.files)}}/>
-        <ReactQuill modules={modules} theme={'snow'} value={content} onChange={(e) => setContent(e)} style={{width: '92%', marginTop: '8px'}}/>
+        <input type='title' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Title' required/>
+        <input type='summary' value={summary} onChange={(e) => setSummary(e.target.value)} placeholder='Summary' required/>
+        <input type='file' onChange={e => {setFile(e.target.files)}} required/>
+        <ReactQuill modules={modules} theme={'snow'} value={content} onChange={(e) => setContent(e)} style={{width: '92%', marginTop: '8px'}} required/>
         <Button type='submit' sx={{width: '92%', marginTop: '16px'}} variant='contained'>Create post</Button>
       </form>
     </section>

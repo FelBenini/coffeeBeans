@@ -12,7 +12,7 @@ class postController {
         const post = await new postModel({
             title,
             summary,
-            img: newPath,
+            img: newPath.replace("\\", "/"),
             content
         })
         post.save()
