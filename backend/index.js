@@ -1,20 +1,12 @@
 import Express  from "express";
 import cors from 'cors';
 import mongoose from "mongoose";
-import userModel from "./models/user.js";
-import bcrypt from 'bcryptjs';
-import * as dotenv from 'dotenv';
-import Jwt from "jsonwebtoken";
+import userController from "./controllers/userController.js";
+import postController from "./controllers/postController.js";
 import cookieParser from "cookie-parser";
 import multer from 'multer';
-import fs from 'fs'
-import postModel from "./models/post.js";
 
 const uploadMiddleware = multer({dest: 'uploads/'})
-
-dotenv.config()
-
-const salt = bcrypt.genSaltSync(10);
 
 const app = Express()
 
@@ -27,65 +19,16 @@ mongoose.connection.once('open', () => {
     console.log('MongoDB conectado com sucesso')
 })
 
-app.post('/register', async (req, res) => {
-    const {username, email, password} = req.body
-    let userExists = await userModel.findOne({ "$or": [ { email: req.body.email }, { username: req.body.username} ] })
-    if (userExists) {
-        res.status(409).json('Username or email already taken')
-    } else {
-        let user = await new userModel({username, email, password: bcrypt.hashSync(password, salt)})
-        user.save()
-        res.status(200).json(user)
-    }
-})
+//user
 
-app.post('/login', async (req, res) => {
-    const {username, password} = req.body
-    const user = await userModel.findOne({username: username})
-    const passVerification = bcrypt.compareSync(password, user.password)
-    if (passVerification) {
-        //logged
-        Jwt.sign({username, id: user._id}, process.env.SECRET_KEY, {}, (err, token) => {
-            if (err) throw err;
-            res.cookie('token', token).json({
-                id: user._id,
-                username
-            })
-        })
-    } else {
-        //not logged
-        res.status(400).json('Could not login')
-    }
-})
+app.post('/register', userController.RegisterUser)
+app.post('/login', userController.loginUser)
+app.get('/profile', userController.profile)
+app.post('/logout', userController.logout)
 
-app.get('/profile', (req, res) => {
-    const {token} = req.cookies
-    Jwt.verify(token, process.env.SECRET_KEY, {}, (err, info) => {
-        if (err) throw err;
-        res.json(info)
-    })
-})
+//post
 
-app.post('/logout', (req, res) => {
-    res.cookie('token', '').json('ok')
-})
-
-app.post('/createpost', uploadMiddleware.single('file'), async (req, res) => {
-    const {originalname, path} = req.file
-    const parts = originalname.split('.')
-    const format = parts[parts.length - 1]
-    const newPath = path + '.' + format
-    fs.renameSync(path, newPath)
-    const {title, summary, content} = req.body
-    const post = await new postModel({
-        title,
-        summary,
-        img: newPath,
-        content
-    })
-    post.save()
-    res.json(post)
-})
+app.post('/createpost', uploadMiddleware.single('file'), postController.newPost)
 
 app.listen(4000, () => {
     console.log('Servidor iniciado')

@@ -1,0 +1,23 @@
+import postModel from "../models/post.js";
+import fs from 'fs'
+
+class postController {
+    static newPost = async (req, res) => {
+        const {originalname, path} = req.file
+        const parts = originalname.split('.')
+        const format = parts[parts.length - 1]
+        const newPath = path + '.' + format
+        fs.renameSync(path, newPath)
+        const {title, summary, content} = req.body
+        const post = await new postModel({
+            title,
+            summary,
+            img: newPath,
+            content
+        })
+        post.save()
+        res.json(post)
+    }
+}
+
+export default postController
