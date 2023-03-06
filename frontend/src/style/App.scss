@@ -112,6 +112,68 @@ a {
 }
 
 .postCard {
-  width: 100px;
-  height: fit-content; 
+  aspect-ratio: 4.5/3;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  &:nth-child(1) {
+    grid-column: 1/ span 2;
+    grid-row: 1/ span 2;
+    padding: 20px;
+    border-radius: 12px;
+    padding-bottom: 22px;
+    & h2 {
+      font-size: 22px;
+    }
+    & p {
+      font-size: 16px;
+    }
+  }
+  &:hover {
+    text-decoration: none;
+  }
+  & p {
+    margin: 0px;
+    height: 20px;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+  }
+  & h2 {
+    margin: 0px;
+    width: 100%;
+    word-wrap: break-word;
+    margin-bottom: 8px;
+    max-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    overflow: hidden;
+    font-size: 16px;
+  }
+}
+
+#firstPosts {
+  display: grid;
+  grid-template-columns: 240px 240px 240px 240px;
+  grid-template-rows: 165px 165px 165px;
+  width: fit-content;
+  height: 100%;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+#homePage {
+  padding-top: 10px;
+  & h1 {
+    font-size: 32px;
+    margin-left: 5%;
+  }
 }

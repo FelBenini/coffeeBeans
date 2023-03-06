@@ -4,20 +4,25 @@ import PostsCard from '../postsCard'
 
 const HomePage = () => {
   const [posts, setPosts] = useState([])
+  const [firstPosts, setFirstPosts] = useState([])
   const fetchPosts = () => {
     axios.get('http://localhost:4000/posts').then(response => {
       setPosts(response.data)
-      console.log(response)
+      setFirstPosts(response.data.slice(0, 9))
   })}
   useEffect(() => {
     fetchPosts() // eslint-disable-next-line
   },[])
-  const postsMap = posts.map((post, i) => {
+  const postsMap = firstPosts.map((post, i) => {
     return <PostsCard key={i} index={i} info={post}/>
   })
   return (
     <section id='homePage'>
-      {postsMap}
+      <h1>Latest posts</h1>
+      <div id='firstPosts'>
+        {postsMap}
+      </div>
+      
     </section>
   )
 }

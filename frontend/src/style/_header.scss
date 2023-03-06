@@ -1,9 +1,10 @@
 header {
     width: calc(100% - 64px);
-    padding: 0px 32px;
+    padding: 4px 32px;
     height: 56px;
     display: flex;
     justify-content: space-between;
+    outline: #00000031 1px solid;
     flex-direction: row;
     align-items: center;
     & nav {
