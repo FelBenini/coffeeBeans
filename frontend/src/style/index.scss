@@ -9,6 +9,7 @@ body {
   width: 100%;
   background-color: #fafafa;
   color: #090a0a;
+  overflow: overlay;
 }
 
 html {
@@ -24,4 +25,20 @@ html {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+::-webkit-scrollbar-track {
+  background: #3030303d;
+  width: 50px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  outline: 2px solid #3030302d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffffaf;
+  border-radius: 60px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.384);
 }

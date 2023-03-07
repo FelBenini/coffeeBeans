@@ -4,9 +4,10 @@ header {
     height: 56px;
     display: flex;
     justify-content: space-between;
-    outline: #00000031 1px solid;
+    outline: #00000015 1px solid;
     flex-direction: row;
     align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     & nav {
         width: 160px;
         display: flex;

@@ -220,7 +220,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: 1px solid rgba(0, 0, 0, 0.199);
+  outline: 1px solid #00000021;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px -4px 12px;
 }
 
 #logoutDialog {
