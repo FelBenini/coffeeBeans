@@ -23,7 +23,12 @@ class postController {
     }
 
     static displayPost = async (req, res) => {
-        const posts = await postModel.find().sort({createdAt: -1})
+        const page = req.query.page || 1
+        const limit = req.query.limit || 15
+        const posts = await postModel.find()
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .sort({createdAt: -1})
         res.json(posts)
     }
 
