@@ -14,11 +14,12 @@ const PostPage = () => {
     fetchContent(id)
   })
   return (
-    <div>
+    <section id='postPage'>
       <h1>{content.title}</h1>
+      <img src={'http://localhost:4000/'+content.img} alt='Background img'/>
       <h3>{parse(`${content.summary}`)}</h3>
       {parse(`${content.content}`)}
-    </div>
+    </section>
   )
 }
 

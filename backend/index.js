@@ -11,7 +11,8 @@ import * as url from 'url';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const uploadMiddleware = multer({dest: 'uploads/'})
+const uploadMiddleware = multer({dest: 'uploads/',
+limits: { fieldSize: 25 * 10000 * 10000 }})
 
 const app = Express()
 
