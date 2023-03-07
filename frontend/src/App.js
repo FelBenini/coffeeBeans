@@ -9,11 +9,13 @@ import RegisterPage from './components/pages/RegisterPage';
 import CreatePostPage from './components/pages/CreatePostPage';
 import PostPage from './components/pages/PostPage';
 import Footer from './components/footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [sideMenuState, setSideMenuState] = useState(false)
   return (
     <BrowserRouter>
+    <ScrollToTop/>
     <Header setSideMenu={setSideMenuState}/>
     <SideMenu drawerState={sideMenuState} setDrawerState={setSideMenuState}/>
     <Routes>

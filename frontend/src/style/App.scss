@@ -95,6 +95,8 @@ a {
 
 #newPostSection {
   width: 100%;
+  padding-top: 24px;
+  min-height: calc(90% - 120px - 22px);
   & form {
     width: 100%;
     display: flex;
@@ -200,8 +202,9 @@ a {
     font-size: 18px;
     display: flex;
     flex-direction: column;
-    & p {
+    & img {
       align-self: center;
+      max-width: 100%;
     }
   }
   & img {
