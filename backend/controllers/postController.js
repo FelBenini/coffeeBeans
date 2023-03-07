@@ -8,14 +8,15 @@ class postController {
         const parts = originalname.split('.')
         const format = parts[parts.length - 1]
         const newPath = path + '.' + format
-        sharp(path).resize(920).webp({quality: 80,
+        sharp(path).resize(1920).webp({quality: 100,
         chromaSubsampling: '4:4:4'}).toFile(newPath)
-        const {title, summary, content} = req.body
+        const {title, summary, content, user} = req.body
         const post = await new postModel({
             title,
             summary,
             img: newPath.replace("\\", "/"),
-            content
+            content,
+            users: user
         })
         post.save()
         res.json(post)
@@ -27,8 +28,8 @@ class postController {
     }
 
     static getPost = async (req, res) => {
-        const post = await postModel.findById(req.params.id)
-        res.json(post)
+        const post = await postModel.findById(req.params.id).populate('users', ['username']).exec()
+        res.status(200).json(post)
     }
 }
 

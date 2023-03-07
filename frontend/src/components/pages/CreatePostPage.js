@@ -2,12 +2,14 @@ import React from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Button } from '@mui/material'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../UserContext'
 
 
 const CreatePostPage = () => {
   const redirect = useNavigate()
+  const {userInfo} = useContext(UserContext)
   const [title, setTitle] = useState('')
   const [summary, setSummary] = useState('')
   const [content, setContent] = useState('')
@@ -32,6 +34,7 @@ const CreatePostPage = () => {
     data.set('title', title)
     data.set('summary', summary)
     data.set('content', content)
+    data.set('user', userInfo.id)
     data.set('file', file[0])
     await fetch('http://localhost:4000/createpost', {
       method: 'POST',
