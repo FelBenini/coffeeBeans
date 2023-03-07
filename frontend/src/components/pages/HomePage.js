@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PostsCard from '../postsCard'
-import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { Pagination } from '@mui/material'
 
 const HomePage = () => {
   const [posts, setPosts] = useState([])
   const navigate = useNavigate()
-  const {search} = useLocation()
   const [searchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page'))
   const [pageCount, setPageCount] = useState()
@@ -23,13 +22,13 @@ const HomePage = () => {
   useEffect(() => {
     setPage(searchParams.get('page') || 1)
     fetchPosts(page)
-  },[page, search])
+  },[page, searchParams])
   const postsMap = firstPosts.map((post, i) => {
     return <PostsCard key={i} index={i} info={post}/>
   })
 
   const handlePageChange = (event, value) => {
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     navigate({
       pathname: '/',
       search: `?page=${value}`,
