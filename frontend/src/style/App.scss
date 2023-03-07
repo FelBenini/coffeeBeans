@@ -227,7 +227,12 @@ footer {
 #logoutDialog {
   display: flex;
   flex-direction: column;
-  height: 120px;
-  justify-content: space-between;
-  padding: 8px 16px;
+  height: 156px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 32px;
+  & svg {
+    transform: scale(3.2);
+    margin-left: -4px;
+  }
 }

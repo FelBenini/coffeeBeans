@@ -12,6 +12,7 @@ import Footer from './components/footer';
 import ScrollToTop from './components/ScrollToTop';
 import { UserContext } from './UserContext';
 import { Dialog, Button } from '@mui/material';
+import { BiLogOut } from 'react-icons/bi'
 
 function App() {
   const navigate = useNavigate()
@@ -39,7 +40,8 @@ function App() {
         onClose={handleClose}
       >
         <span id='logoutDialog'>
-          <h3>You sure you want to logout?</h3>
+          <BiLogOut/>
+          <h3>Are you sure you want to logout?</h3>
           <Button variant='contained' onClick={logout}>YES</Button>
         </span>
       </Dialog>
