@@ -1,12 +1,10 @@
 import React from 'react'
-import ReactQuill, {Quill} from 'react-quill'
+import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { Button } from '@mui/material'
 import { useState } from 'react'
-import { ImageResize } from 'quill-image-resize-module';
 import { useNavigate } from 'react-router-dom'
 
-Quill.register('modules/imageResize', ImageResize);
 
 const CreatePostPage = () => {
   const redirect = useNavigate()
@@ -15,7 +13,6 @@ const CreatePostPage = () => {
   const [content, setContent] = useState('')
   const [file, setFile] = useState()
   const modules = {
-    ImageResize: {},
     toolbar: [
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
