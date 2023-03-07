@@ -8,6 +8,7 @@ import LoginPage from './components/pages/LoginPage';
 import RegisterPage from './components/pages/RegisterPage';
 import CreatePostPage from './components/pages/CreatePostPage';
 import PostPage from './components/pages/PostPage';
+import Footer from './components/footer';
 
 function App() {
   const [sideMenuState, setSideMenuState] = useState(false)
@@ -22,6 +23,7 @@ function App() {
       <Route path='/create' element={<CreatePostPage/>}/>
       <Route path='/post/:name/:id' element={<PostPage/>}/>
     </Routes>
+    <Footer/>
     </BrowserRouter>
   );
 }
