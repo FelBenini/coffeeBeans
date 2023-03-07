@@ -29,7 +29,8 @@ class postController {
         .limit(limit * 1)
         .skip((page - 1) * limit)
         .sort({createdAt: -1})
-        res.json(posts)
+        const numOfPages = await postModel.count()
+        res.json({pagesNumber: Math.ceil(numOfPages / limit), posts: posts})
     }
 
     static getPost = async (req, res) => {

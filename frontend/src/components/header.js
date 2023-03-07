@@ -5,10 +5,8 @@ import { BiMenuAltLeft } from "react-icons/bi"
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-    const navigate = useNavigate()
     const { setUserInfo, userInfo } = useContext(UserContext)
     useEffect(() => {
         fetch('http://localhost:4000/profile', {
@@ -19,15 +17,6 @@ const Header = (props) => {
             })
         })
     }, [setUserInfo])
-    async function logout() {
-        await fetch('http://localhost:4000/logout', {
-            credentials: 'include',
-            method: 'POST'
-        })
-        setUserInfo(null)
-        navigate('/')
-    }
-
     let username = userInfo?.username
 
     return (
@@ -39,7 +28,7 @@ const Header = (props) => {
             <nav>
                 {username ? <nav>
                     <Link to='create'>New post</Link>
-                    <Link onClick={logout}>Logout</Link>
+                    <Link onClick={() => { props.showDialog(true) }}>Logout</Link>
                 </nav> : <nav>
                     <Link to='login'>Login</Link>
                     <Link to='register'>Register</Link>

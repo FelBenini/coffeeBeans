@@ -7,8 +7,8 @@ const HomePage = () => {
   const [firstPosts, setFirstPosts] = useState([])
   const fetchPosts = () => {
     axios.get('http://localhost:4000/posts').then(response => {
-      setPosts(response.data)
-      setFirstPosts(response.data.slice(0, 9))
+      setPosts(response.data.posts)
+      setFirstPosts(response.data.posts.slice(0, 9))
   })}
   useEffect(() => {
     fetchPosts() // eslint-disable-next-line
@@ -22,7 +22,13 @@ const HomePage = () => {
       <div id='firstPosts'>
         {postsMap}
       </div>
-      
+      <div id='morePosts'>
+        {posts.slice(9, posts.length).map((post, index) => {
+          return (
+            <div key={index}>{post.title}</div>
+          )
+        })}
+      </div>
     </section>
   )
 }
