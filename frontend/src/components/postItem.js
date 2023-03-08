@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const PostItem = ({ info }) => {
     function getStyle() {
@@ -11,14 +12,14 @@ const PostItem = ({ info }) => {
         return style;
     }
     return (
-        <div className='postItem'>
+        <Link to={`/post/${info.title}/${info._id}`} className='postItem'>
             <span className='postItemBg' style={getStyle()}>
             </span>
             <span>
                 <h2>{info.title}</h2>
                 <p>{info.summary}</p>
             </span>
-        </div>
+        </Link>
     )
 }
 
