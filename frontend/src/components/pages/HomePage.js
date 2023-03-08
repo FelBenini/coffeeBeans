@@ -28,7 +28,7 @@ const HomePage = () => {
   })
 
   const handlePageChange = (event, value) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0 })
     navigate({
       pathname: '/',
       search: `?page=${value}`,
@@ -36,7 +36,8 @@ const HomePage = () => {
   }
   return (
     <section id='homePage'>
-      <h1>Latest posts</h1>
+      {/* eslint-disable-next-line*/}
+      <h1>Latest posts {page == '1' ? '' : <p>Page {page}</p>}</h1>
       <div id='firstPosts'>
         {postsMap}
       </div>
@@ -47,7 +48,7 @@ const HomePage = () => {
           )
         })}
       </div>
-      <Pagination page={parseInt(page)} sx={{width: '100%', display: 'flex', justifyContent: 'center'}} count={pageCount} onChange={handlePageChange}
+      <Pagination page={parseInt(page)} sx={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '32px'}} count={pageCount} onChange={handlePageChange}
       variant="outlined" shape="rounded" />
     </section>
   )

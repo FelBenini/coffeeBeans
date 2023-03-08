@@ -8,8 +8,22 @@ import multer from 'multer';
 import helmet from "helmet";
 import path from 'path'
 import * as url from 'url';
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+const apiKey = process.env.API_KEY
+
+function checkApiKey(req, res, next) {
+    const { authorization } = req.headers;
+    if (authorization === apiKey) {
+      next();
+    } else {
+      res.status(401).send('Unauthorized');
+    }
+  }
 
 const uploadMiddleware = multer({dest: 'uploads/',
 limits: { fieldSize: 25 * 10000 * 10000 }})
