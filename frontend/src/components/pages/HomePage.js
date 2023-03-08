@@ -3,6 +3,7 @@ import axios from 'axios'
 import PostsCard from '../postsCard'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { Pagination } from '@mui/material'
+import PostItem from '../postItem'
 
 const HomePage = () => {
   const [posts, setPosts] = useState([])
@@ -45,7 +46,7 @@ const HomePage = () => {
       <div id='morePosts'>
         {posts.slice(9, posts.length).map((post, index) => {
           return (
-            <div key={index}>{post.title}</div>
+            <PostItem info={post}/>
           )
         })}
       </div>

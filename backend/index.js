@@ -42,7 +42,7 @@ app.use(helmet())
 
 mongoose.connect('mongodb://127.0.0.1:27017/CoffeeBeans');
 mongoose.connection.once('open', () => {
-    console.log('MongoDB conectado com sucesso')
+    console.log('MongoDB connected')
 })
 
 //user
@@ -59,5 +59,5 @@ app.get('/posts', apiAuth, postController.displayPost)
 app.get('/postcontent/:id', apiAuth, postController.getPost)
 
 app.listen(4000, () => {
-    console.log('Servidor iniciado')
+    console.log('Server started')
 })

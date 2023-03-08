@@ -8,7 +8,7 @@ class postController {
         const parts = originalname.split('.')
         const format = parts[parts.length - 1]
         const newPath = path + '.' + format
-        await sharp(path).resize(1920).webp({quality: 100,
+        await sharp(path).resize(1330).webp({quality: 100,
         chromaSubsampling: '4:4:4'}).toFile(newPath)
         const {title, summary, content, user} = req.body
         const post = await new postModel({
