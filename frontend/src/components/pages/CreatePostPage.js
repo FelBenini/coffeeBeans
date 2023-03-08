@@ -38,7 +38,8 @@ const CreatePostPage = () => {
     data.set('file', file[0])
     await fetch('http://localhost:4000/createpost', {
       method: 'POST',
-      body: data
+      body: data,
+      headers: {'authorization' : process.env.REACT_APP_API_KEY}
     }).then(post => {
       redirect('/')
     })

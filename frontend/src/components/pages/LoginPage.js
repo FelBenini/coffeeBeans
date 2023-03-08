@@ -26,7 +26,8 @@ const LoginPage = () => {
         const response = await fetch('http://localhost:4000/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
-            headers: { 'Content-type': 'application/json' },
+            headers: { 'Content-type': 'application/json',
+            'authorization' : process.env.REACT_APP_API_KEY},
             credentials: 'include',
         })
         if (response.ok) {

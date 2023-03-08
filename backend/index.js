@@ -16,7 +16,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const apiKey = process.env.API_KEY
 
-function checkApiKey(req, res, next) {
+function apiAuth(req, res, next) {
     const { authorization } = req.headers;
     if (authorization === apiKey) {
       next();
@@ -47,16 +47,16 @@ mongoose.connection.once('open', () => {
 
 //user
 
-app.post('/register', userController.RegisterUser)
-app.post('/login', userController.loginUser)
-app.get('/profile', userController.profile)
-app.post('/logout', userController.logout)
+app.post('/register', apiAuth, userController.RegisterUser)
+app.post('/login', apiAuth, userController.loginUser)
+app.get('/profile', apiAuth, userController.profile)
+app.post('/logout', apiAuth, userController.logout)
 
 //post
 
-app.post('/createpost', uploadMiddleware.single('file'), postController.newPost)
-app.get('/posts', postController.displayPost)
-app.get('/postcontent/:id', postController.getPost)
+app.post('/createpost', apiAuth, uploadMiddleware.single('file'), postController.newPost)
+app.get('/posts', apiAuth, postController.displayPost)
+app.get('/postcontent/:id', apiAuth, postController.getPost)
 
 app.listen(4000, () => {
     console.log('Servidor iniciado')

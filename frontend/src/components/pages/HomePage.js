@@ -10,11 +10,12 @@ const HomePage = () => {
   const [searchParams] = useSearchParams();
   const [page, setPage] = useState(searchParams.get('page'))
   const [pageCount, setPageCount] = useState()
-  console.log(page)
   const [firstPosts, setFirstPosts] = useState([])
 
   const fetchPosts = (page) => {
-    axios.get(`http://localhost:4000/posts?page=${page || 1}`).then(response => {
+    axios.get(`http://localhost:4000/posts?page=${page || 1}`, {
+      headers: {'authorization' : process.env.REACT_APP_API_KEY}
+    }).then(response => {
       setPosts(response.data.posts)
       setFirstPosts(response.data.posts.slice(0, 9))
       setPageCount(response.data.pagesNumber)
@@ -48,8 +49,7 @@ const HomePage = () => {
           )
         })}
       </div>
-      <Pagination page={parseInt(page)} sx={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '32px'}} count={pageCount} onChange={handlePageChange}
-      variant="outlined" shape="rounded" />
+      <Pagination page={parseInt(page)} sx={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '32px'}} count={pageCount} onChange={handlePageChange} shape="rounded" />
     </section>
   )
 }

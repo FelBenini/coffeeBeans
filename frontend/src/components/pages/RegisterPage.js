@@ -24,7 +24,8 @@ const RegisterPage = () => {
         let response = await fetch('http://localhost:4000/register', {
             method: 'POST',
             body: JSON.stringify({email, username, password}),
-            headers: {'content-type': 'application/json'}
+            headers: {'content-type': 'application/json',
+            'authorization' : process.env.REACT_APP_API_KEY}
         })
         if (response.status === 409) {
             setFormText('Could not register, this e-mail was already taken')
