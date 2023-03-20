@@ -133,7 +133,7 @@ h1 {
   justify-content: flex-end;
   border-radius: 8px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  text-shadow: 0px 2px 4px #00000059;
+  text-shadow: 0px 2px 2px #000000b7;
   &:nth-child(1) {
     grid-column: 1/ span 2;
     grid-row: 1/ span 2;
@@ -198,10 +198,16 @@ h1 {
   width: 80%;
   margin: 0 auto;
   display: flex;
+  min-height: 90%;
   flex-direction: column;
+  word-wrap: break-word;
   & h1 {
     font-size: 32px;
     margin: 24px 0px;
+    word-wrap: break-word;
+    height: fit-content;
+    display: block;
+    width: 100%;
   }
   & h3 {
     font-size: 22px;
@@ -251,7 +257,7 @@ footer {
 .postItem {
   display: flex;
   height: 170px;
-  width: 80%;
+  width: 71.5%;
   margin: 24px auto;
   padding: 8px 12px;
   padding-bottom: 24px;
@@ -261,6 +267,10 @@ footer {
   outline: 1px solid rgba(0, 0, 0, 0.219);
   position: relative;
   border-radius: 8px;
+  transition: all ease 0.1s;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.815);
+  }
   & span {
     height: 150px;
     overflow-wrap: break-word;
@@ -274,13 +284,13 @@ footer {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 700px;
+    max-width: 600px;
   }
   & p {
     height: 120px;
     position: absolute;
     top: 60px;
-    max-width: 660px;
+    max-width: 580px;
     max-height: 96px;
     line-height: 32px;
     overflow: hidden;

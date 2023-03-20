@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const PostsCard = ({info, index}) => {
   function getStyle() {
     let style = {
-                backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.541), rgba(0, 0, 0, 0.141), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(http://localhost:4000/${info.img})`,
+                backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.541), rgba(0, 0, 0, 0.341), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(http://localhost:4000/${info.img})`,
                 backgroundSize: "cover",
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center center'

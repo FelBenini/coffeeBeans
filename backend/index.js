@@ -9,6 +9,7 @@ import helmet from "helmet";
 import path from 'path'
 import * as url from 'url';
 import * as dotenv from 'dotenv'
+import { IpFilter } from "express-ipfilter";
 
 dotenv.config()
 
@@ -33,6 +34,7 @@ const app = Express()
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParser())
 app.use(Express.json())
+app.use(IpFilter([process.env.IP_ADDRESS, '::1', process.env.IP_ADDRESS_2], {mode: 'allow', log: false}))
 app.use(
     '/uploads',
      Express.static(path.join(__dirname, './uploads'))

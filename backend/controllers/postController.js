@@ -37,6 +37,10 @@ class postController {
         const post = await postModel.findById(req.params.id).populate('users', ['username']).exec()
         res.status(200).json(post)
     }
+
+    static updatePost = async (req, res) => {
+        
+    }
 }
 
 export default postController
