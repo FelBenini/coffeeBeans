@@ -184,6 +184,7 @@ h1 {
   flex-wrap: wrap;
   margin: 0 auto;
   margin-top: 40px;
+  margin-bottom: 32px;
 }
 
 #homePage {
@@ -260,19 +261,22 @@ footer {
 .postItem {
   display: flex;
   height: 170px;
-  width: 71.5%;
-  margin: 12px auto;
+  width: 75%;
+  margin: 14px auto;
   padding: 8px 12px;
   padding-bottom: 24px;
   padding-top: 0px;
   background-color: rgb(245, 245, 245);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  outline: 1px solid rgba(0, 0, 0, 0.219);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   position: relative;
   border-radius: 8px;
-  transition: all ease 0.1s;
+  transition: all ease 0.3s;
+  border-top: 1px solid rgba(0, 0, 0, 0.041);
+  outline: transparent;
   &:hover {
     background-color: rgba(255, 255, 255, 0.815);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    outline: 1px solid rgba(0, 0, 0, 0.089);
   }
   & span {
     height: 150px;
